@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Test jQuery AJAX</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #aaa;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #eee;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>AJAX Load Comments</h1>
+    <button id="loadComments">Load Data Komentar</button>
+
+    <div id="result"></div>
+
+    <script>
+        $(document).ready(function() {
+            $('#loadComments').click(function() {
+                $.ajax({
+                    url: 'https://jsonplaceholder.typicode.com/comments',
+                    method: 'GET',
+                    success: function(data) {
+                        let html = '<table>';
+                        html += '<tr><th>ID</th><th>Name</th><th>Email</th><th>Comment</th></tr>';
+
+                        // Batas 20 data saja untuk tidak terlalu berat
+                        data.slice(0, 20).forEach(function(comment) {
+                            html += `<tr>
+                                <td>${comment.id}</td>
+                                <td>${comment.name}</td>
+                                <td>${comment.email}</td>
+                                <td>${comment.body}</td>
+                            </tr>`;
+                        });
+
+                        html += '</table>';
+                        $('#result').html(html);
+                    },
+                    error: function() {
+                        $('#result').html('<p style="color:red;">Gagal mengambil data!</p>');
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
