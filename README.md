@@ -1,6 +1,10 @@
 # 📘 SQLite Setup for Project
 
 ## 🎯 Goal
+Im using Sqlite because there is not order for create database in mysql databse, or porstgre, so simple sqlite and running
+
+
+## 🎯 Goal
 Create and manage an SQLite database named `brighton.db` to store project data and their associated categories.
 
 ---
