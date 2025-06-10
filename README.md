@@ -68,4 +68,15 @@ INSERT INTO ProjectCategory VALUES (3, 4); -- Project C - Redesign
 
 
 
+-- displays all projects and the total category for each project
 
+SELECT 
+    p.id,
+    p.name AS project_name,
+    COUNT(pc.category_id) AS total_categories
+FROM 
+    Project p
+LEFT JOIN 
+    ProjectCategory pc ON p.id = pc.project_id
+GROUP BY 
+    p.id, p.name;
